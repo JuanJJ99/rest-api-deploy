@@ -15,7 +15,7 @@ app.get('/', (req,res) => {
 //todos los recursos que sean movies se identifican con /movies, por ejemplo: /movies/1, /movies/2, etc.
 // endpoints para obtener las peliculas, con path que tiene un recurso
 
-const AcceptedOrigins = ['http://localhost:8080']
+const AcceptedOrigins = ['http://localhost:8080','*']
 
 app.get('/movies', (req,res) =>{
     const origin = req.header('origin')
