@@ -1,13 +1,18 @@
 // para iniciar
 // el node --watch ./app.js es para que se reinicie el servidor cada vez que se haga un cambio en el código
 
-const express = require('express');
-const movies = require('./movies.json');
+import express, { json } from 'express';
+import movies from './movies.json' with {type: 'json'}; // esto es para importar el archivo movies.json como un módulo de tipo json, esto es necesario porque a partir de la versión 14 de Node.js, se introdujo el concepto de módulos, y ahora se debe especificar el tipo de módulo que se está importando, en este caso, se especifica que se está importando un módulo de tipo json, esto hace que se pueda acceder a las propiedades del objeto movies directamente, sin necesidad de usar movies.default, como se hacía antes con CommonJS
 const app = express();
-const {validateMovie, validatePartialMovie} = require('./schemas/movies') // para validar los datos que se reciben en el body de las peticiones
+import { validateMovie, validatePartialMovie } from './schemas/movies.js'; // para validar los datos que se reciben en el body de las peticiones
+
+//const express = require('express');
+//const movies = require('./movies.json');
+//const app = express();
+//const {validateMovie, validatePartialMovie} = require('./schemas/movies') // para validar los datos que se reciben en el body de las peticiones
 
 
-app.use(express.json()) // para que el servidor pueda entender el formato json en el body de las peticiones
+app.use(json()) // para que el servidor pueda entender el formato json en el body de las peticiones
 app.get('/', (req,res) => {
     res.json({message: 'Hola mundo'});
 });

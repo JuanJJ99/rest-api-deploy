@@ -1,4 +1,4 @@
-const z = require('zod') // para validar los datos que se reciben en el body de las peticiones
+import z from 'zod' // para validar los datos que se reciben en el body de las peticiones
 
 const movieSchema = z.object({ 
         id: z.number().int().positive(),
@@ -9,12 +9,10 @@ const movieSchema = z.object({
         rating: z.number().min(0).max(10).optional().default(0)
     })
 
-function validateMovie (object) {
+export function validateMovie (object) {
     return movieSchema.safeParse(object)
 }
 
-function validatePartialMovie (object){
+export function validatePartialMovie (object){
     return movieSchema.partial().safeParse(object)
 }
-
-module.exports = {validateMovie, validatePartialMovie}
