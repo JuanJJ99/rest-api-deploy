@@ -1,4 +1,4 @@
-// para iniciar es así: 
+// para iniciar
 // el node --watch ./app.js es para que se reinicie el servidor cada vez que se haga un cambio en el código
 
 const express = require('express');
